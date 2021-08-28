@@ -13,7 +13,20 @@
     },
     "categories": {
       "auth": {
-        "cognitoautha3efbf5c": {}
+        "cognitoautha3efbf5c": {},
+        "cognitoauth": {
+          "userPoolId": "ap-southeast-1_eDwBpJWbf",
+          "userPoolName": "Carousell-App-Pool",
+          "webClientId": "5bmbkjn2eg8qabl50ji81hmeu4",
+          "nativeClientId": "5bmbkjn2eg8qabl50ji81hmeu4",
+          "identityPoolId": "ap-southeast-1:056fddc5-fa09-4495-931d-d95c4105f92e",
+          "identityPoolName": "Carousell Identity Pool",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::993192594005:role/Cognito_CarousellIdentityPoolAuth_Role",
+          "authRoleName": "Cognito_CarousellIdentityPoolAuth_Role",
+          "unauthRoleArn": "arn:aws:iam::993192594005:role/Cognito_CarousellIdentityPoolUnauth_Role",
+          "unauthRoleName": "Cognito_CarousellIdentityPoolUnauth_Role"
+        }
       }
     }
   }

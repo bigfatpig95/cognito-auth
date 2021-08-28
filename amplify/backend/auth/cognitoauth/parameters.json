@@ -1,0 +1,6 @@
+{
+  "authSelections": "identityPoolAndUserPool",
+  "resourceName": "cognitoauth",
+  "serviceType": "imported",
+  "region": "ap-southeast-1"
+}

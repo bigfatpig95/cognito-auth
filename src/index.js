@@ -4,9 +4,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Amplify from 'aws-amplify';
-import config from './aws-exports';
-Amplify.configure(config);
+import { Amplify } from 'aws-amplify';
+import config from './config';
+//import config from './aws-exports';
+
+Amplify.configure({
+  Auth: {
+    mandatorySignIn: false,
+    region: config.cognito.REGION,
+    userPoolId: config.cognito.USER_POOL_ID,
+    identityPoolId: config.cognito.IDENTITY_POOL_ID,
+    userPoolWebClientId: config.cognito.APP_CLIENT_ID
+  },
+})
 
 
 ReactDOM.render(
