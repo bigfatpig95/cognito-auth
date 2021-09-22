@@ -1,4 +1,5 @@
 const config = {
+    MAX_ATTACHMENT_SIZE: 5000000,
     cognito: {
         REGION: "ap-southeast-1",
 	    USER_POOL_ID: "ap-southeast-1_eDwBpJWbf",

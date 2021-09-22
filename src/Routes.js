@@ -5,22 +5,29 @@ import Login from "./containers/Login";
 import NotFound from "./containers/NotFound";
 import Signup from "./containers/Signup";
 import ResetPassword from "./containers/ResetPassword";
-
+import NewNote from "./containers/NewNote";
+import Notes from "./containers/Notes";
 export default function Routes() {
   return (
     <Switch>
       <Route exact path="/">
         <Home />
       </Route>
-      <Route path="/login">
+      <Route exact path="/login">
          <Login />
      </Route>
-     <Route path="/signup">
+     <Route exact path="/signup">
         <Signup />
      </Route>
-     <Route path="/reset">
+     <Route exact path="/reset">
         <ResetPassword />
      </Route>
+     <Route exact path="/notes/new">
+       <NewNote />
+     </Route>
+     <Route exact path="/notes/:id">
+      <Notes />
+    </Route>
       <Route>
         <NotFound />
       </Route>

@@ -9,11 +9,15 @@ import { Auth } from "aws-amplify";
 import { useHistory } from "react-router-dom";
 import { onError } from "./lib/errorLib";
 
+
+
+
 function App() {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
   const history = useHistory();
-  
+
+
   useEffect(() => {
     onLoad();
   }, []);
@@ -40,12 +44,14 @@ function App() {
   }
 
   return (
+
+
     !isAuthenticating && (
       <div className="App container py-3">
         <Navbar collapseOnSelect bg="light" expand="md" className="mb-3">
           <LinkContainer to="/">
             <Navbar.Brand className="font-weight-bold text-muted">
-              Scratch
+              Marketplace
             </Navbar.Brand>
           </LinkContainer>
           <Navbar.Toggle />

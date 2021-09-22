@@ -7,5 +7,36 @@
       "dependsOn": [],
       "customAuth": false
     }
+  },
+  "api": {
+    "Item": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 90,
+              "description": "Items"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authcognitoauth"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "storage": {
+    "itemImage": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation"
+    }
   }
 }
