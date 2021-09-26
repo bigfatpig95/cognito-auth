@@ -19,6 +19,10 @@ import {AmplifyS3Image} from "@aws-amplify/ui-react";
 
 import Image from 'react-bootstrap/Image'
 
+import { useAppContext } from "../lib/contextLib";
+
+import Auth from "@aws-amplify/auth";
+
 export default function Notes() {
   const file = useRef(null);
   const { id } = useParams();
@@ -29,7 +33,8 @@ export default function Notes() {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-
+  const { isAuthenticated } = useAppContext();
+ const [currentUser, setCurrentUser] = useState([]);
   const imageRef = useRef();
   const [listForm, setListForm] = useState({
     name: "",
@@ -42,9 +47,9 @@ export default function Notes() {
     
     
   });
+  
 
   const handleChange = (key) => {
-    // console.log(listForm)
      return (e) => {
        setListForm({
          ...listForm,
@@ -58,13 +63,26 @@ export default function Notes() {
   },[]);
 
   async function fetchItems() {
+    
     setFetching(true);
+    console.log(isAuthenticated)
+    console.log(id)
     try {
       const itemData = await API.graphql({ query: getListitem, variables: { id: id }});
-      //\const items = itemData.data.listListitems.items;
       const items = itemData.data.getListitem;
+      const owner = await Auth.currentUserInfo();
+      try{
+     if (owner.attributes['sub'] !== items.owner){
+      setCurrentUser('false')
+     }else{
+      setCurrentUser('true')
+     }
+    }catch (err) {
+      console.log('erorr 2')
+      setCurrentUser('false')
+
+    }
       console.log(items)
-     // console.log(itemData.data.getListitem.image)
       setItems(items);
       setListForm({
         name: items.name,
@@ -73,11 +91,13 @@ export default function Notes() {
         image: items.image,
       });
       console.log(items.image)
-    //  console.log(listForm)
+     
+   
       setFetching(false);
-      //console.log(items)
+      
       
     } catch (err) {
+      console.log('erorr 1')
       console.error(err);
     }
     setFetching(false);
@@ -85,37 +105,11 @@ export default function Notes() {
 
 
   
-  /*useEffect(() => {
-    function loadNote() {
-      return API.get("notes", `/notes/${id}`);
-    }
-
-    async function onLoad() {
-      try {
-        const note = await loadNote();
-        const { content, attachment } = note;
-
-        if (attachment) {
-          note.attachmentURL = await Storage.get(attachment);
-        }
-
-        setContent(content);
-        setNote(note);
-      } catch (e) {
-        onError(e);
-      }
-    }
-
-    onLoad();
-  }, [id]);*/
-
-  function validateForm() {
-    return listForm.name.length > 0;
-  }
   
- /* function formatFilename(str) {
-    return str.replace(/^\w+-/, "");
-  }*/
+  function validateForm() {
+    if (listForm.category !== 'Choose...' && listForm.category !== '')
+    return true;
+  }
   
   function handleFileChange(event) {
     file.current = event.target.files[0];
@@ -123,17 +117,10 @@ export default function Notes() {
   
   async function handleSubmit(event) {
     event.preventDefault();
-   // console.log(items.image)
-    /*if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
-      alert(
-        `Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE /
-          1000000} MB.`
-      );
-      return;
-    }*/
+   
   var fileName = Date.now() + ".jpg";
   
- // 
+ 
   setIsLoading(true);
   console.log(listForm)
   //console.log(imageRef)
@@ -141,15 +128,14 @@ export default function Notes() {
   if (imageRef.current.files.length >1){
     for (let i = 0; i < imageRef.current.files.length; i++) {
       console.log(imageRef.current.files[i])
-    //console.log(imageRef.current.files[1])
   }
 }
+
   if (imageRef.current.files[0]){
     await Storage.remove(items.image)
     Storage.put(fileName, imageRef.current.files[0]).then(res => {
     API.graphql({ query: updateListitem, variables: { input: {...listForm, id: id, image: fileName }}, authMode: "AMAZON_COGNITO_USER_POOLS" })
     .then((e) => {
-      // console.log('test')
        setListForm({
          id:"",
          name: "",
@@ -211,9 +197,12 @@ else{
     history.push("/");
 
   }
+
   
- 
- 
+  
+ function rendernote(){
+
+  if (currentUser === 'true'){
   return (
     <div className="Notes">
       <Image src={'https://carousell82244-staging.s3.ap-southeast-1.amazonaws.com/public/' + items.image} fluid />
@@ -225,7 +214,7 @@ else{
           <Form.Group className="mb-3" controlId="ItemName">
           <Form.Label>Item Name</Form.Label>
           
-          <Form.Control defaultValue = {items.name} type="text" onChange={handleChange("name")} />
+          <Form.Control defaultValue = {items.name} type="text" onChange={handleChange("name")} onSelect={handleChange("name")}/>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="Description">
@@ -237,13 +226,18 @@ else{
           <Form.Group className="mb-3" controlId="category">
           <Form.Label>Category</Form.Label>
           
-          <Form.Control defaultValue = {items.category} type="text" onChange={handleChange("category")} />
+          <Form.Select defaultValue="Choose..." onChange={handleChange('category')} >
+          <option>Choose...</option>
+          <option>Electronic</option>
+          <option>Books</option>
+          <option>Music</option>
+        </Form.Select>
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="price">
           <Form.Label>Price</Form.Label>
           
-          <Form.Control defaultValue = {items.price} type="text" onChange={handleChange("price")} />
+          <Form.Control defaultValue = {items.price} type="number" onChange={handleChange("price")} onSelect={handleChange("price")} />
           </Form.Group>
           
 
@@ -283,4 +277,91 @@ else{
     </div>
   );
             }
+            else{
+              return(
+                <div className="Notes">
+                  <Image src={'https://carousell82244-staging.s3.ap-southeast-1.amazonaws.com/public/' + items.image} fluid />
+            
+                  {items && (
+                    
+                    <Form>
+                      
+                      <Form.Group className="mb-3" controlId="ItemName">
+                      <Form.Label>Item Name</Form.Label>
+                      
+                      <Form.Control defaultValue = {items.name} type="text" readOnly />
+                      </Form.Group>
+            
+                      <Form.Group className="mb-3" controlId="Description">
+                      <Form.Label>Description</Form.Label>
+                      
+                      <Form.Control defaultValue = {items.description} type="text" readOnly />
+                      </Form.Group>
+            
+                      <Form.Group className="mb-3" controlId="category">
+                      <Form.Label>Category</Form.Label>
+                      
+                      <Form.Control defaultValue = {items.category} type="text" readOnly />
+                      </Form.Group>
+            
+                      <Form.Group className="mb-3" controlId="price">
+                      <Form.Label>Price</Form.Label>
+                      
+                      <Form.Control defaultValue = {items.price} type="text" readOnly />
+                      </Form.Group>
+                      
+                      </Form>
+                      )
+              }
+              </div>
+                 ) }
+            }
+          
+  
+
+  function displaynote(){
+    return(
+    <div className="Notes">
+      <Image src={'https://carousell82244-staging.s3.ap-southeast-1.amazonaws.com/public/' + items.image} fluid />
+
+      {items && (
+        
+        <Form>
+          
+          <Form.Group className="mb-3" controlId="ItemName">
+          <Form.Label>Item Name</Form.Label>
+          
+          <Form.Control defaultValue = {items.name} type="text" readOnly />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="Description">
+          <Form.Label>Description</Form.Label>
+          
+          <Form.Control defaultValue = {items.description} type="text" readOnly />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="category">
+          <Form.Label>Category</Form.Label>
+          
+          <Form.Control defaultValue = {items.category} type="text" readOnly />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="price">
+          <Form.Label>Price</Form.Label>
+          
+          <Form.Control defaultValue = {items.price} type="text" readOnly />
+          </Form.Group>
+          
+          </Form>
+          )
+  }
+  </div>
+     ) }
+    //console.log(user)
+          return (
+            <div className="note">
+              {isAuthenticated === true ? rendernote(): displaynote()}
+            </div>
+          );
+        }
   

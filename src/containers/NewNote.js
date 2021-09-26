@@ -13,7 +13,7 @@ import { createListitem } from "../graphql/mutations";
 
 import { s3Upload } from "../lib/awsLib";
 
-
+import CurrencyInput from 'react-currency-input-field';
 
 export default function NewNote() {
   const file = useRef(null);
@@ -24,28 +24,6 @@ export default function NewNote() {
   const [items, setItems] = useState([]); 
   const [fetching, setFetching] = useState(false); // new
 
-
-  //useEffect(() => {
-  //  fetchItems();
-  //}, []);
-
- /* async function fetchItems() {
-    setFetching(true);
-    
-    try {
-      const itemData = await API.graphql(graphqlOperation(listListitems));
-      
-      const items = itemData.data.listListitems.items;
-      
-      setItems(items);
-      setFetching(false);
-      console.log(items)
-    } catch (err) {
-      console.error(err);
-    }
-    setFetching(false);
-  }
-*/
   const imageRef = useRef();
 
   const [listForm, setListForm] = useState({
@@ -59,8 +37,6 @@ export default function NewNote() {
   });
 
   const handleChange = (key) => {
-   // console.log(listForm)
-   // console.log(key)
     return (e) => {
       console.log(e.target.value)
       console.log(key)
@@ -70,44 +46,40 @@ export default function NewNote() {
       });
     }
   }
-
   function validateForm() {
-    //console.log(listForm)
-    return listForm.name.length > 0;
+
+    
+   // console.log((decimal[1]))
+    //try{
+   // const decimal = listForm.price.split('.')
+   // console.log(decimal[1].length)
+   // if (listForm.name.length > 0 && ((listForm.price % 1 === 0 )|| (decimal[1].length <= 2))){
+    //    return (true)
+    //}}catch (err) {
+     // console.log(err)
+     // return (false)
+    //}
+    //}
+    if (listForm.category !== 'Choose...' && listForm.category !== '')
+    return true;
   }
+   
 
   function handleFileChange(event) {
     console.log(event)
 
     file.current = event.target.files[0];
-   // return (e) => {
-     // setListForm({
-     //   ...listForm,
-     //   [event]: e.target.value
-    //  });
-   // }
   }
 
- /* async function handleSubmit(event) {
-    event.preventDefault();
 
-    if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
-      alert(
-        `Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE /
-          1000000} MB.`
-      );
-      return;
-    }
-
-    setIsLoading(true);
-  }*/
 
   async function handleSubmit(event) {
   event.preventDefault();
 
-
+  
   var fileName = Date.now() + ".jpg";
   setIsLoading(true);
+  if (imageRef.current.files[0]){
     Storage.put(fileName, imageRef.current.files[0]).then(res => {
       API.graphql({ query: createListitem, variables: { input: {...listForm, image: fileName }}, authMode: "AMAZON_COGNITO_USER_POOLS" })
      // API.graphql(graphqlOperation(createListitem, { input: {
@@ -121,7 +93,6 @@ export default function NewNote() {
           category: "",
           price: "",
         });
-        //window.location.href= "/";
         history.push("/");
       })
       .catch((err) => {
@@ -129,77 +100,65 @@ export default function NewNote() {
         setIsLoading(false);
       });
     })
-  };
+  }else{
+    API.graphql({ query: createListitem, variables: { input: {...listForm }}, authMode: "AMAZON_COGNITO_USER_POOLS" })
+   .then((e) => {
+     setListForm({
+       name: "",
+       description: "",
+       category: "",
+       price: "",
+     });
+     history.push("/");
+   })
+   .catch((err) => {
+     console.error(err);
+     setIsLoading(false);
+   });
 
-
-
-
-  //  file.current = event.target.files[0];
-   /* if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
-      alert(
-        `Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE /
-          1000000} MB.`
-      );
-      return;
-    }
-
-    setIsLoading(true);
-    
-    const attachment = file.current ? await s3Upload(file.current) : null;
-    console.log('test')
-    console.log(attachment)
-    setListForm({...listForm, image: attachment});
-    console.log(listForm)
-    API.graphql({ query: createListitem, variables: { input: {listForm }, authMode: "AMAZON_COGNITO_USER_POOLS" }).then(e => {
-    //API.graphql(graphqlOperation(createListitem, { input: listForm, authMode: "AMAZON_COGNITO_USER_POOLS" })).then(e => {
-      console.log(e)
-      setListForm({
-        name: "",
-        description: "",
-        category: "",
-        price: "",
-        image: "",
-      });
-      console.log(listForm)
-      history.push("/");
-    }).catch(err => {
-      //  console.log(isAuthenticated)
-        console.error(err);
-        setIsLoading(false);
-    });
   }
-  */
+
+}
 
   return (
     <div className="NewNote">
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="ItemName">
           <Form.Label>Item Name</Form.Label>
-          <Form.Control placeholder="Enter Item Name" type="text" onChange={handleChange("name")} />
+          <Form.Control placeholder="Enter Item Name" type="text" onChange={handleChange("name")} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="Description">
           <Form.Label>Description</Form.Label>
-          <Form.Control placeholder="Enter Item Description" type="text" onChange={handleChange("description")} />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="category">
-          <Form.Label>category</Form.Label>
-          <Form.Control placeholder="Enter Item category" type="text" onChange={handleChange("category")} />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="price">
-          <Form.Label>price</Form.Label>
-          <Form.Control  placeholder="Enter Item price" type="text" onChange={handleChange("price")} />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="file">
-          <Form.Label>Attachment</Form.Label>
-          <Form.Control type="file" accept='image/jpg' ref={imageRef} />
+          <Form.Control placeholder="Enter Item Description" type="text" onChange={handleChange("description")} required />
+          <Form.Control.Feedback type="invalid">
+              Please choose a username.
+        </Form.Control.Feedback>
         </Form.Group>
 
         
 
+        <Form.Group as={Col} controlId="formGridState">
+        <Form.Label>category</Form.Label>
+        <Form.Select defaultValue="Choose..." onChange={handleChange('category')} >
+          <option>Choose...</option>
+          <option>Electronic</option>
+          <option>Books</option>
+          <option>Music</option>
+        </Form.Select>
+      </Form.Group>
+
+        <Form.Group className="mb-3" controlId="price">
+          <Form.Label>price</Form.Label>
+          
+          <Form.Control  placeholder="Enter Item price" type="number" onChange={handleChange("price")} required 
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="file">
+          <Form.Label>Attachment</Form.Label>
+          <Form.Control type="file" accept='image/jpg' ref={imageRef} required/>
+        </Form.Group>
 
         <div className='mt-3'>
         <LoaderButton
@@ -218,14 +177,13 @@ export default function NewNote() {
   );
 }
 
-
-/*<Form.Group as={Col} controlId="formGridState">
-        <Form.Label>Cat</Form.Label>
-        <Form.Select defaultValue="Choose..." onChange={handleChange('Cat')}>
-          <option>Choose...</option>
-          <option>Electronic</option>
-          <option>Books</option>
-          <option>Music</option>
-          <option>Cloth</option>
-        </Form.Select>
-      </Form.Group>*/
+   /*     
+        <CurrencyInput
+          id="input-example"
+          name="input-name"
+          placeholder="Please enter a number"
+          defaultValue={1000}
+          decimalsLimit={2}
+          onValueChange={(value, name) => console.log(value, name)}
+        />;
+        */

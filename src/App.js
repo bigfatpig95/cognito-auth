@@ -9,7 +9,13 @@ import { Auth } from "aws-amplify";
 import { useHistory } from "react-router-dom";
 import { onError } from "./lib/errorLib";
 
+import Form from "react-bootstrap/Form";
 
+import LoaderButton from "./components/LoaderButton";
+import InputGroup from 'react-bootstrap/InputGroup'
+import Button from 'react-bootstrap/Button'
+import { API, graphqlOperation,Storage } from "aws-amplify";// new
+import { listListitems } from "./graphql/queries";// new
 
 
 function App() {
@@ -21,6 +27,25 @@ function App() {
   useEffect(() => {
     onLoad();
   }, []);
+
+
+  const [listForm, setListForm] = useState({
+    search: ''
+    
+    
+  });
+
+  const handleChange = (key) => {
+    history.push('/')
+    return (e) => {
+      console.log(e.target.value)
+      console.log(key)
+      setListForm({
+        ...listForm,
+        [key]: e.target.value
+      });
+    }
+  }
   
   async function onLoad() {
     try {
@@ -43,6 +68,12 @@ function App() {
     history.push("/login");
   }
 
+  async function handleSubmit(event) {
+    event.preventDefault();
+    history.push("/Search", { data:  listForm.search});
+  }
+ 
+
   return (
 
 
@@ -54,8 +85,35 @@ function App() {
               Marketplace
             </Navbar.Brand>
           </LinkContainer>
+          <LinkContainer to="/Electronic">
+            <Nav.Link>Electronic</Nav.Link>
+          </LinkContainer>
+          
           <Navbar.Toggle />
+          
           <Navbar.Collapse className="justify-content-end">
+
+          <Form onSubmit={handleSubmit}>     
+          <InputGroup>
+          <Form.Control
+          placeholder="search"
+          type="text"
+          onChange={handleChange("search")}
+          />
+    <LoaderButton
+          block
+          type="submit"
+          
+          variant="primary"
+         
+        >
+          Search
+        </LoaderButton>
+  </InputGroup>
+  </Form>
+
+
+
             <Nav activeKey={window.location.pathname}>
               {isAuthenticated ? (
                 <Nav.Link onClick={handleLogout}>Logout</Nav.Link>

@@ -7,6 +7,8 @@ import Signup from "./containers/Signup";
 import ResetPassword from "./containers/ResetPassword";
 import NewNote from "./containers/NewNote";
 import Notes from "./containers/Notes";
+import Electronic from "./containers/Electronic";
+import Search from "./containers/Search";
 export default function Routes() {
   return (
     <Switch>
@@ -27,6 +29,12 @@ export default function Routes() {
      </Route>
      <Route exact path="/notes/:id">
       <Notes />
+    </Route>
+    <Route exact path="/Electronic">
+      <Electronic />
+    </Route>
+    <Route exact path="/Search">
+      <Search />
     </Route>
       <Route>
         <NotFound />
