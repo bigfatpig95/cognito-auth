@@ -88,6 +88,22 @@ function App() {
           <LinkContainer to="/Electronic">
             <Nav.Link>Electronic</Nav.Link>
           </LinkContainer>
+
+          <LinkContainer to="/Music">
+            <Nav.Link>Music</Nav.Link>
+          </LinkContainer>
+
+          <LinkContainer to="/Books">
+            <Nav.Link>Books</Nav.Link>
+          </LinkContainer>
+          
+          <LinkContainer to="/Others">
+            <Nav.Link>Others</Nav.Link>
+          </LinkContainer>
+
+          <LinkContainer to="/AboutUs">
+            <Nav.Link>About Us</Nav.Link>
+          </LinkContainer>
           
           <Navbar.Toggle />
           

@@ -231,6 +231,7 @@ else{
           <option>Electronic</option>
           <option>Books</option>
           <option>Music</option>
+          <option>Others</option>
         </Form.Select>
           </Form.Group>
 

@@ -8,7 +8,12 @@ import ResetPassword from "./containers/ResetPassword";
 import NewNote from "./containers/NewNote";
 import Notes from "./containers/Notes";
 import Electronic from "./containers/Electronic";
+import Music from "./containers/Music";
+import Books from "./containers/Books";
+import Others from "./containers/Others";
 import Search from "./containers/Search";
+import AboutUs from "./containers/AboutUs";
+
 export default function Routes() {
   return (
     <Switch>
@@ -33,9 +38,27 @@ export default function Routes() {
     <Route exact path="/Electronic">
       <Electronic />
     </Route>
+    
+    <Route exact path="/Music">
+      <Music />
+    </Route>
+
+    <Route exact path="/Books">
+      <Books />
+    </Route>
+
+    <Route exact path="/Others">
+      <Others />
+    </Route>
+    
     <Route exact path="/Search">
       <Search />
     </Route>
+
+    <Route exact path="/AboutUs">
+      <AboutUs />
+    </Route>
+
       <Route>
         <NotFound />
       </Route>
