@@ -12,6 +12,7 @@ import Music from "./containers/Music";
 import Books from "./containers/Books";
 import Others from "./containers/Others";
 import Search from "./containers/Search";
+import AboutUs from "./containers/AboutUs";
 
 export default function Routes() {
   return (
@@ -53,6 +54,11 @@ export default function Routes() {
     <Route exact path="/Search">
       <Search />
     </Route>
+
+    <Route exact path="/AboutUs">
+      <AboutUs />
+    </Route>
+
       <Route>
         <NotFound />
       </Route>

@@ -100,6 +100,10 @@ function App() {
           <LinkContainer to="/Others">
             <Nav.Link>Others</Nav.Link>
           </LinkContainer>
+
+          <LinkContainer to="/AboutUs">
+            <Nav.Link>About Us</Nav.Link>
+          </LinkContainer>
           
           <Navbar.Toggle />
           
