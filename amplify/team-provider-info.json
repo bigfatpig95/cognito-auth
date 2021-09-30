@@ -21,11 +21,17 @@
           "nativeClientId": "5bmbkjn2eg8qabl50ji81hmeu4",
           "identityPoolId": "ap-southeast-1:056fddc5-fa09-4495-931d-d95c4105f92e",
           "identityPoolName": "Carousell Identity Pool",
-          "allowUnauthenticatedIdentities": false,
+          "allowUnauthenticatedIdentities": true,
           "authRoleArn": "arn:aws:iam::993192594005:role/Cognito_CarousellIdentityPoolAuth_Role",
           "authRoleName": "Cognito_CarousellIdentityPoolAuth_Role",
           "unauthRoleArn": "arn:aws:iam::993192594005:role/Cognito_CarousellIdentityPoolUnauth_Role",
           "unauthRoleName": "Cognito_CarousellIdentityPoolUnauth_Role"
+        }
+      },
+      "interactions": {
+        "LexAssv2": {
+          "deploymentBucketName": "amplify-amplifya13771833c144-staging-82244-deployment",
+          "s3Key": "amplify-builds/LexAssv2-526c547634682f6d7564-build.zip"
         }
       }
     }

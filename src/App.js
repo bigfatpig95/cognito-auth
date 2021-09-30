@@ -102,9 +102,13 @@ function App() {
           </LinkContainer>
 
           <LinkContainer to="/AboutUs">
-            <Nav.Link>About Us</Nav.Link>
+            <Nav.Link>About</Nav.Link>
           </LinkContainer>
-          
+
+          <LinkContainer to="/ChatBot">
+            <Nav.Link>ChatBot</Nav.Link>
+          </LinkContainer>  
+
           <Navbar.Toggle />
           
           <Navbar.Collapse className="justify-content-end">
