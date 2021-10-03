@@ -17,12 +17,12 @@ class AboutUs extends Component {
 
           <div className="row g-3">
             <div className="col-sm-4">
-              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '28vh'}}>
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '25vh'}}>
                 <img src="../../images/aboutus/SecondHand.png" 
                      width = "150"/>
               </div>
               <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>    
-                <h5>A second hand market for goods</h5>
+                <h5> <b> A second hand market for goods </b></h5>
               </div>
               <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
                 <p>
@@ -33,12 +33,12 @@ class AboutUs extends Component {
             </div>
 
             <div className="col-sm-4">
-              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '28vh'}}>
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '25vh'}}>
                 <img src="../../images/aboutus/ServiceExchange.png" 
                      width = "150"/>
               </div>
               <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
-                <h5>Services and knowledge exchange</h5>
+                <h5><b>Services and knowledge exchange </b></h5>
               </div>
               <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
                 <p>
@@ -49,12 +49,12 @@ class AboutUs extends Component {
             </div>
 
             <div className="col-sm-4">
-              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '28vh'}}>
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '25vh'}}>
                 <img src="../../images/aboutus/Secure.png" 
                      width = "150"/>
               </div>
               <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
-                <h5>Safe and available platform</h5>
+                <h5><b>Safe and available platform </b></h5>
               </div>
               <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
                 <p>
@@ -72,7 +72,31 @@ class AboutUs extends Component {
           </div>
           <div className="row g-3">
             <div className="col-sm-4">
-
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '5vh'}}>
+                <h3>Joseph Hoe</h3>
+              </div>
+            </div>
+            <div className="col-sm-4">
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '5vh'}}>
+                <h3>Kan Chee Kong</h3>
+              </div>
+            </div>
+            <div className="col-sm-4">
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '5vh'}}>
+                <h3>Don Ng</h3>
+              </div>
+            </div>
+          </div>
+          <div className="row g-3">
+            <div className="col-sm-6">
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
+                <h3>Eva Ong</h3>
+              </div>
+            </div>
+            <div className="col-sm-6">
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
+                <h3>Kelvin Leng</h3>
+              </div>
             </div>
           </div>
         </div>
