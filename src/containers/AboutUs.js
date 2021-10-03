@@ -17,7 +17,11 @@ class AboutUs extends Component {
 
           <div className="row g-3">
             <div className="col-sm-4">
-              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '28vh'}}>
+                <img src="../../images/aboutus/SecondHand.png" 
+                     width = "150"/>
+              </div>
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>    
                 <h5>A second hand market for goods</h5>
               </div>
               <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
@@ -29,6 +33,10 @@ class AboutUs extends Component {
             </div>
 
             <div className="col-sm-4">
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '28vh'}}>
+                <img src="../../images/aboutus/ServiceExchange.png" 
+                     width = "150"/>
+              </div>
               <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
                 <h5>Services and knowledge exchange</h5>
               </div>
@@ -41,6 +49,10 @@ class AboutUs extends Component {
             </div>
 
             <div className="col-sm-4">
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '28vh'}}>
+                <img src="../../images/aboutus/Secure.png" 
+                     width = "150"/>
+              </div>
               <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
                 <h5>Safe and available platform</h5>
               </div>

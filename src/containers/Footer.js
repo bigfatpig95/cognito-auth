@@ -63,13 +63,11 @@ const Footer = () => {
         <div className="container-fluid bg-dark text-white">
           <div className="row ">
             <div className="col-md-3 py-3">
-              <div className="h6">Company Name</div>
+              <div className="h6">BS Market Place</div>
               <hr />
               <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book.
+                At BS Marketplace we believe in the power of community. We strive to be a platform that encourage the safe exchange of goods and services among 
+                individuals with various interests.
               </p>
             </div>
             <div className="col-md-3 py-3">
@@ -84,20 +82,20 @@ const Footer = () => {
                     Electronics
                   </Link>
                 </li>
-                <li className="list-group-item bg-dark text-white border-light">
+                {/* <li className="list-group-item bg-dark text-white border-light">
                   <Link
                     to="/"
                     className="text-decoration-none text-white stretched-link"
                   >
                     Mobiles
                   </Link>
-                </li>
+                </li> */}
                 <li className="list-group-item bg-dark text-white border-light">
                   <Link
                     to="/"
                     className="text-decoration-none text-white stretched-link"
                   >
-                    Car & bike
+                    Books
                   </Link>
                 </li>
                 <li className="list-group-item bg-dark text-white border-light">
@@ -105,7 +103,7 @@ const Footer = () => {
                     to="/"
                     className="text-decoration-none text-white stretched-link"
                   >
-                    Super Market
+                    Music
                   </Link>
                 </li>
                 <li className="list-group-item bg-dark text-white border-light">
@@ -113,7 +111,7 @@ const Footer = () => {
                     to="/"
                     className="text-decoration-none text-white stretched-link"
                   >
-                    Travel Cards
+                    Others
                   </Link>
                 </li>
               </ul>
