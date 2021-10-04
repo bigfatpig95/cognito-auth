@@ -2,20 +2,34 @@ import React, { Component } from "react";
 
 class AboutUs extends Component {
   render() {
+    const ColoredLine = ({ color }) => (
+      <hr
+          style={{
+              color: color,
+              backgroundColor: color,
+              height: 1
+          }}
+      />
+    );
+    
     return (
       <React.Fragment>
         <div classname = "container-about"> 
-          <div  style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
+        <div style={{ margin: '50px'}}></div>
+          <div  style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '5vh'}}>
             <h1>About Us</h1>
           </div>
-          <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '5vh'}}> 
+          <div>
+            <ColoredLine color="black" />
+          </div>
+          <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}> 
             <p>
               At BS Marketplace we believe in the power of community. We strive to be a platform that encourage the safe exchange of goods and services among 
               individuals with various interests.
             </p>
           </div>
 
-          <div className="row g-3">
+          <div className="row">
             <div className="col-sm-4">
               <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '25vh'}}>
                 <img src="../../images/aboutus/SecondHand.png" 
@@ -66,23 +80,28 @@ class AboutUs extends Component {
           </div>
         </div>
 
+        <div style={{ margin: '150px'}}></div>
+
         <div classname = "container-team">
-          <div  style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '20vh'}}>
+          <div  style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '5vh'}}>
             <h1>Our Team</h1>
           </div>
-          <div className="row g-3">
+          <div>
+            <ColoredLine color="black" />
+          </div>
+          <div className="row">
             <div className="col-sm-4">
-              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '5vh'}}>
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
                 <h3>Joseph Hoe</h3>
               </div>
             </div>
             <div className="col-sm-4">
-              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '5vh'}}>
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
                 <h3>Kan Chee Kong</h3>
               </div>
             </div>
             <div className="col-sm-4">
-              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '5vh'}}>
+              <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '10vh'}}>
                 <h3>Don Ng</h3>
               </div>
             </div>
