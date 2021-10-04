@@ -1,2 +1,8 @@
 .App {
 }
+
+#nav-dropdown{
+    color: rgb(75, 75, 202);
+    
+    background-color: rgba(255, 255, 255, 0);
+}

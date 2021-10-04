@@ -25,7 +25,7 @@ export default function Search() {
           const itemData = await API.graphql(graphqlOperation(listListitems, {
             filter: {
                 name: {
-                    eq : data,
+                    contains : data,
                    // gt : data
                 }
             }

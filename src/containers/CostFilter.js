@@ -37,13 +37,6 @@ export default function CostFilter() {
   const history = useHistory();
   const data = (history.location.state?.data.split(","))
   console.log(data)
-  //const data2 = data.split(",");
-  //console.log(data2)
-  //console.log(data[1])
-  //console.log(parseInt(data[0]),parseInt(data[1]))
-  
- // console.log(data2[0], data2[1])
-
 
   useEffect(() => {
     fetchItems();
@@ -56,7 +49,7 @@ export default function CostFilter() {
           filter: {
               price: {
                   between : [parseInt(data[0]),parseInt(data[1]) ]
-                // between : [50,100 ]
+               
               }
           }
       }));
@@ -77,11 +70,7 @@ export default function CostFilter() {
     return (
       
       <>
-        <LinkContainer to="/notes/new">
-          <ListGroup.Item action className="py-3 text-nowrap text-truncate">
-            <span className="ml-2 font-weight-bold">List a new item</span>
-          </ListGroup.Item>
-        </LinkContainer>
+        
         {items.map(({ itemId, description, category ,price, image, createdAt }) => (
           <LinkContainer key={itemId} to={`/notes/${itemId}`}>
             <ListGroup.Item action>
