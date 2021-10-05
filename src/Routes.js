@@ -14,6 +14,7 @@ import Others from "./containers/Others";
 import Search from "./containers/Search";
 import AboutUs from "./containers/AboutUs";
 import ChatBot from "./containers/ChatBot";
+import CostFilter from "./containers/CostFilter";
 
 export default function Routes() {
   return (
@@ -60,8 +61,12 @@ export default function Routes() {
       <AboutUs />
     </Route>
 
+
     <Route exact path="/ChatBot">
       <ChatBot />
+    </Route>
+    <Route exact path="/CostFilter">
+      <CostFilter />
     </Route>
 
       <Route>

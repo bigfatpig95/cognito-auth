@@ -21,20 +21,22 @@ import {AmplifyS3Image} from "@aws-amplify/ui-react";
 import { Link } from "react-router-dom";
 
 import { LinkContainer } from "react-router-bootstrap";
-
+import { useHistory } from "react-router-dom";
 
 Amplify.configure(config);
 
 
 
 
-export default function Electronic() {
+export default function CostFilter() {
     const [items, setItems] = useState([]);
   const [fetching, setFetching] = useState(false);
 
   const { isAuthenticated } = useAppContext();
   const [isLoading, setIsLoading] = useState(true);
-
+  const history = useHistory();
+  const data = (history.location.state?.data.split(","))
+  console.log(data)
 
   useEffect(() => {
     fetchItems();
@@ -45,8 +47,9 @@ export default function Electronic() {
     try {
       const itemData = await API.graphql(graphqlOperation(listListitems, {
           filter: {
-              category: {
-                  eq : "Electronic"
+              price: {
+                  between : [parseInt(data[0]),parseInt(data[1]) ]
+               
               }
           }
       }));
@@ -67,11 +70,7 @@ export default function Electronic() {
     return (
       
       <>
-        <LinkContainer to="/notes/new">
-          <ListGroup.Item action className="py-3 text-nowrap text-truncate">
-            <span className="ml-2 font-weight-bold">List a new item</span>
-          </ListGroup.Item>
-        </LinkContainer>
+        
         {items.map(({ itemId, description, category ,price, image, createdAt }) => (
           <LinkContainer key={itemId} to={`/notes/${itemId}`}>
             <ListGroup.Item action>
@@ -103,7 +102,11 @@ export default function Electronic() {
   
   return (
     <>
-    
+    <LinkContainer to="/notes/new">
+          <ListGroup.Item action className="py-3 text-nowrap text-truncate">
+            <span className="ml-2 font-weight-bold">List a new item</span>
+          </ListGroup.Item>
+        </LinkContainer>
         {items.map((item) => (
         //{items.map(({ id, description, category ,price, image, createdAt }) => (
           <LinkContainer key={item.id} to={`/notes/${item.id}`}>
