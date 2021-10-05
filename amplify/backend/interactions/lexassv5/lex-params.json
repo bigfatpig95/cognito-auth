@@ -1,0 +1,27 @@
+{
+    "resourceName": "lexassv5",
+    "botName": "bsbottwo",
+    "intents": [
+        {
+            "slots": [
+                {
+                    "name": "name",
+                    "type": "AMAZON.GB_FIRST_NAME",
+                    "prompt": "what is your name?",
+                    "required": true,
+                    "customType": false
+                }
+            ],
+            "utterances": [
+                "hi",
+                "hey",
+                "hello"
+            ],
+            "intentName": "greet",
+            "newSlotTypes": []
+        }
+    ],
+    "outputVoice": false,
+    "sessionTimeout": 5,
+    "coppa": false
+}
