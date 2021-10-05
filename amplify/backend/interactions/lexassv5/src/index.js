@@ -16,18 +16,16 @@ exports.handler = function(event, context) {
     let intentParams = [
         
         {
-            "name": "Greetings" + "_" + process.env.ENV,
+            "name": "greet" + "_" + process.env.ENV,
             
             
             "sampleUtterances": [
             
                 "hi",
             
-                "heelo",
+                "hey",
             
                 "hello",
-            
-                "hey",
             
             ],
         
@@ -38,16 +36,16 @@ exports.handler = function(event, context) {
             "slots": [
                 
                 {
-                    "name": "GreetingsReply",
+                    "name": "name",
                     "slotConstraint": "Required",
                     "priority": 0,
-                    "slotType": "AMAZON.US_FIRST_NAME",
+                    "slotType": "AMAZON.GB_FIRST_NAME",
                     
                     "valueElicitationPrompt": {
                         "maxAttempts": 3,
                         "messages": [
                             {
-                                "content": "What is your name?",
+                                "content": "what is your name?",
                                 "contentType": "PlainText"
                             }
                         ]
@@ -58,7 +56,7 @@ exports.handler = function(event, context) {
         },
         
     ];
-    let botName = "BsBot";
+    let botName = "bsbottwo";
     if(process.env.ENV && process.env.ENV !== "NONE") {
       botName = botName + '_' + process.env.ENV;
     }
@@ -68,7 +66,7 @@ exports.handler = function(event, context) {
         "intents": [
         
             {
-                "intentName": "Greetings" + "_" + process.env.ENV,
+                "intentName": "greet" + "_" + process.env.ENV,
                 "intentVersion": "$LATEST"
             },
         
@@ -250,7 +248,7 @@ function ensureLambdaFunctionAccess(intent){
 
         const params = {
             FunctionName: lambdaName,
-            StatementId: `Lex-${intent.name}`+ "ff2f4eb0",
+            StatementId: `Lex-${intent.name}`+ "8943de2f",
             Action: 'lambda:InvokeFunction',
             Principal: 'lex.amazonaws.com',
             SourceArn: `arn:aws:lex:${region}:${accountId}:intent:${intent.name}:*`,

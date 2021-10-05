@@ -40,7 +40,7 @@
     }
   },
   "interactions": {
-    "LexAssv2": {
+    "lexassv5": {
       "service": "Lex",
       "providerPlugin": "awscloudformation",
       "build": true

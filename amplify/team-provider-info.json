@@ -32,6 +32,10 @@
         "LexAssv2": {
           "deploymentBucketName": "amplify-amplifya13771833c144-staging-82244-deployment",
           "s3Key": "amplify-builds/LexAssv2-526c547634682f6d7564-build.zip"
+        },
+        "lexassv5": {
+          "deploymentBucketName": "amplify-amplifya13771833c144-staging-82244-deployment",
+          "s3Key": "amplify-builds/lexassv5-6d34743946315532556b-build.zip"
         }
       }
     }

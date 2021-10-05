@@ -7,8 +7,8 @@ Amplify.configure(awsconfig);
 
 const ChatBot = () => (
   <AmplifyChatbot
-    botName="BsBot_staging"
-    botTitle="BsBot"
+    botName="bsbottwo_staging"
+    botTitle="bsbottwo"
     welcomeMessage="Hello, how can I help you?"
   />
 );

@@ -117,12 +117,12 @@
         "FunctionName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "cognitoauth_cfnlambda_ff2f4eb0",
+            "cognitoauth_cfnlambda_8943de2f",
             {
               "Fn::Join": [
                 "",
                 [
-                  "cognitoauth_cfnlambda_ff2f4eb0",
+                  "cognitoauth_cfnlambda_8943de2f",
                   "-",
                   {
                     "Ref": "env"
@@ -163,12 +163,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "lexLambdaRoleff2f4eb0",
+            "lexLambdaRole8943de2f",
             {
               "Fn::Join": [
                 "",
                 [
-                  "lexLambdaRoleff2f4eb0",
+                  "lexLambdaRole8943de2f",
                   "-",
                   {
                     "Ref": "env"
@@ -196,7 +196,7 @@
         },
         "Policies": [
           {
-            "PolicyName": "cloudWatchPolicyff2f4eb0",
+            "PolicyName": "cloudWatchPolicy8943de2f",
             "PolicyDocument": {
               "Version": "2012-10-17",
               "Statement": [
@@ -213,7 +213,7 @@
             }
           },
           {
-            "PolicyName": "lexPolicyff2f4eb0",
+            "PolicyName": "lexPolicy8943de2f",
             "PolicyDocument": {
               "Version": "2012-10-17",
               "Statement": [
@@ -243,7 +243,7 @@
             }
           },
           {
-            "PolicyName": "lambdaPolicyff2f4eb0",
+            "PolicyName": "lambdaPolicy8943de2f",
             "PolicyDocument": {
               "Version": "2012-10-17",
               "Statement": [
@@ -260,7 +260,7 @@
         ]
       }
     },
-    "LambdaFunctionOutputsff2f4eb0": {
+    "LambdaFunctionOutputs8943de2f": {
       "Type": "Custom::LambdaCallout",
       "Properties": {
         "ServiceToken": {
@@ -286,7 +286,7 @@
     "CognitoUnauthPolicy": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
-        "PolicyName": "lex_amplify_ff2f4eb0",
+        "PolicyName": "lex_amplify_8943de2f",
         "Roles": [
           {
             "Ref": "unauthRoleName"
@@ -328,12 +328,12 @@
                       {
                         "Fn::If": [
                           "ShouldNotCreateEnvResources",
-                          "BsBot",
+                          "bsbottwo",
                           {
                             "Fn::Join": [
                               "",
                               [
-                                "BsBot",
+                                "bsbottwo",
                                 "_",
                                 {
                                   "Ref": "env"
@@ -356,7 +356,7 @@
     "CognitoAuthPolicy": {
       "Type": "AWS::IAM::Policy",
       "Properties": {
-        "PolicyName": "lex_amplify_ff2f4eb0",
+        "PolicyName": "lex_amplify_8943de2f",
         "Roles": [
           {
             "Ref": "authRoleName"
@@ -398,12 +398,12 @@
                       {
                         "Fn::If": [
                           "ShouldNotCreateEnvResources",
-                          "BsBot",
+                          "bsbottwo",
                           {
                             "Fn::Join": [
                               "",
                               [
-                                "BsBot",
+                                "bsbottwo",
                                 "_",
                                 {
                                   "Ref": "env"
@@ -440,12 +440,12 @@
       "Value": {
         "Fn::If": [
           "ShouldNotCreateEnvResources",
-          "BsBot",
+          "bsbottwo",
           {
             "Fn::Join": [
               "",
               [
-                "BsBot",
+                "bsbottwo",
                 "_",
                 {
                   "Ref": "env"
