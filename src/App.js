@@ -114,8 +114,14 @@ function App() {
           </LinkContainer>
 
           <LinkContainer to="/AboutUs">
-            <Nav.Link>About Us</Nav.Link>
+            <Nav.Link>About</Nav.Link>
           </LinkContainer>
+
+
+          <LinkContainer to="/ChatBot">
+            <Nav.Link>ChatBot</Nav.Link>
+          </LinkContainer>  
+
 
           <DropdownButton  variant="link"  title="Cost"  onSelect={handleSelect}>
         <Dropdown.Item  eventKey="0,100">Less Than 100</Dropdown.Item>
@@ -123,6 +129,7 @@ function App() {
         <Dropdown.Item  eventKey="200,300">200 to 300</Dropdown.Item>
       </DropdownButton>
           
+
           <Navbar.Toggle />
           
           <Navbar.Collapse className="justify-content-end">
