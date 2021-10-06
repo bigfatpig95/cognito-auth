@@ -16,9 +16,9 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import Button from 'react-bootstrap/Button'
 import { API, graphqlOperation,Storage } from "aws-amplify";// new
 import { listListitems } from "./graphql/queries";// new
+import Footer from "./containers/Footer";
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
-
 
 function App() {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
@@ -144,14 +144,13 @@ function App() {
     <LoaderButton
           block
           type="submit"
-          
-          variant="primary"
-         
-        >
+          variant="primary">
+
           Search
         </LoaderButton>
   </InputGroup>
   </Form>
+  {/* <Footer /> */}
 
 
 
@@ -174,7 +173,9 @@ function App() {
         <AppContext.Provider value={{ isAuthenticated, userHasAuthenticated }}>
           <Routes />
         </AppContext.Provider>
+        <Footer />
       </div>
+      
     )
   );
 
