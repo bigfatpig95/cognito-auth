@@ -38,5 +38,12 @@
       "service": "S3",
       "providerPlugin": "awscloudformation"
     }
+  },
+  "interactions": {
+    "lexassv5": {
+      "service": "Lex",
+      "providerPlugin": "awscloudformation",
+      "build": true
+    }
   }
 }

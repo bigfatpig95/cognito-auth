@@ -17,6 +17,8 @@ import Button from 'react-bootstrap/Button'
 import { API, graphqlOperation,Storage } from "aws-amplify";// new
 import { listListitems } from "./graphql/queries";// new
 import Footer from "./containers/Footer";
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton'
 
 function App() {
   const [isAuthenticated, userHasAuthenticated] = useState(false);
@@ -72,6 +74,16 @@ function App() {
     event.preventDefault();
     history.push("/Search", { data:  listForm.search});
   }
+
+  async function handleSelect(event) {
+  await history.push('/')
+  
+  history.push("/CostFilter", { data:  event});
+  
+
+  }
+
+ 
  
 
   return (
@@ -102,9 +114,22 @@ function App() {
           </LinkContainer>
 
           <LinkContainer to="/AboutUs">
-            <Nav.Link>About Us</Nav.Link>
+            <Nav.Link>About</Nav.Link>
           </LinkContainer>
+
+
+          <LinkContainer to="/ChatBot">
+            <Nav.Link>ChatBot</Nav.Link>
+          </LinkContainer>  
+
+
+          <DropdownButton  variant="link"  title="Cost"  onSelect={handleSelect}>
+        <Dropdown.Item  eventKey="0,100">Less Than 100</Dropdown.Item>
+        <Dropdown.Item  eventKey="100,200">100 to 200</Dropdown.Item>
+        <Dropdown.Item  eventKey="200,300">200 to 300</Dropdown.Item>
+      </DropdownButton>
           
+
           <Navbar.Toggle />
           
           <Navbar.Collapse className="justify-content-end">
