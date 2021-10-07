@@ -166,17 +166,17 @@ const Footer = () => {
               <div className="h6">Address</div>
               <hr />
               <address>
-                <strong>Twitter, Inc.</strong>
+                <strong>BS Inc.</strong>
                 <br />
-                1355 Market St, Suite 900
+                1355 Pasir Ris, Suite 900
                 <br />
-                San Francisco, CA 94103
+                Singapore, S 94103
                 <br />
-                <abbr title="Phone">P:</abbr> (123) 456-7890
+                <abbr title="Phone">P:</abbr> (65) 9999 9999
               </address>
               <div className="h6">Customer Care</div>
               <hr />
-              <IconTelephone /> +1800 100 1000
+              <IconTelephone /> +65 1000 1000
               <br />
               <IconEnvelope /> info@email.com
             </div>
@@ -200,7 +200,7 @@ const Footer = () => {
               </Link>
             </div>
             <div className="col-md-3 py-2">
-              © 2009-{new Date().getFullYear()} React-E-Commerce.com
+              © 2009-{new Date().getFullYear()} BSMarket.com
             </div>
             <div className="col-md-3 py-2 bg-white">
               <img
