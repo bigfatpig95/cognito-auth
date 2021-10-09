@@ -22,7 +22,7 @@ describe('CRUD:', function() {
           cy.get('#Description').type('test description')
           cy.get('#formGridState').select('Books')
           cy.get('#price').type(50)
-          const fixtureFile = 'ganger.jpg';
+          const fixtureFile = 'ganger';
           cy.get("#file").attachFile(fixtureFile)
           cy.get('.mt-3 > .LoaderButton').click()
           cy.wait(1000)
