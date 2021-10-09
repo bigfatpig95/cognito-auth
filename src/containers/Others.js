@@ -65,11 +65,7 @@ export default function Others() {
     return (
       
       <>
-        <LinkContainer to="/notes/new">
-          <ListGroup.Item action className="py-3 text-nowrap text-truncate">
-            <span className="ml-2 font-weight-bold">List a new item</span>
-          </ListGroup.Item>
-        </LinkContainer>
+        
         {items.map(({ itemId, description, category ,price, image, createdAt }) => (
           <LinkContainer key={itemId} to={`/notes/${itemId}`}>
             <ListGroup.Item action>
@@ -101,11 +97,7 @@ export default function Others() {
   
   return (
     <>
-    <LinkContainer to="/notes/new">
-          <ListGroup.Item action className="py-3 text-nowrap text-truncate">
-            <span className="ml-2 font-weight-bold">List a new item</span>
-          </ListGroup.Item>
-        </LinkContainer>
+    
         {items.map((item) => (
         //{items.map(({ id, description, category ,price, image, createdAt }) => (
           <LinkContainer key={item.id} to={`/notes/${item.id}`}>
