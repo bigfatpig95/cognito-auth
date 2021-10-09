@@ -1,4 +1,3 @@
-import 'cypress-file-upload';
 
 describe('CRUD:', function() {
     // Step 1: setup the application state
@@ -22,7 +21,7 @@ describe('CRUD:', function() {
           cy.get('#Description').type('test description')
           cy.get('#formGridState').select('Books')
           cy.get('#price').type(50)
-          const fixtureFile = 'ganger';
+          const fixtureFile = '../fixtures/ganger.JPG';
           cy.get("#file").attachFile(fixtureFile)
           cy.get('.mt-3 > .LoaderButton').click()
           cy.wait(1000)
