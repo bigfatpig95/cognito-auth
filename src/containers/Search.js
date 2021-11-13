@@ -7,10 +7,8 @@ import ListGroup from "react-bootstrap/ListGroup";
 import {AmplifyS3Image} from "@aws-amplify/ui-react";
 
 export default function Search() {
-
     const [items, setItems] = useState([]);
     const [fetching, setFetching] = useState(false);
-
     const history = useHistory();
     const data = history.location.state?.data
     console.log(data)
@@ -26,42 +24,31 @@ export default function Search() {
             filter: {
                 name: {
                   contains : data,
-                  // gt : data
                 }
             }
         }));
-          
           const items = itemData.data.listListitems.items;
-          console.log(items.length)
-          console.log('items' , items)
           setItems(items);
           setFetching(false);
           
         } catch (err) {
-          console.error(err);
+          console.log('error');
         }
         setFetching(false);
       }
       return (
         <>
             {items.map((item) => (
-            //{items.map(({ id, description, category ,price, image, createdAt }) => (
               <LinkContainer key={item.id} to={`/notes/${item.id}`}>
                 <ListGroup.Item action>
-                  
                 <div>
                   <span className="font-weight-bold">
-                    Name: {item.name.trim().split("\n")[0]}       
-                    
+                    Name: {item.name.trim().split("\n")[0]}                       
                   </span>
-                  </div>
-      
-      
-      
+                  </div>    
                 <div>
                   <span className="font-weight-bold">
-                    Description: {item.description.trim().split("\n")[0]}       
-                    
+                    Description: {item.description.trim().split("\n")[0]}                        
                   </span>
                   </div>
                   <div>
@@ -73,16 +60,12 @@ export default function Search() {
                   <span className="font-weight-bold">
                     Price: {item.price}
                     </span>
-                    </div>
-                    
+                    </div>                    
                     <div>
                     <span className="font-weight-bold">
-                       <AmplifyS3Image style={{"--height": "150px"}} path={item.image} />
-                      
-                       
+                       <AmplifyS3Image style={{"--height": "150px"}} path={item.image} />                      
                     </span>
-                    </div>
-                    
+                    </div>                    
                   <br />
                   <span className="text-muted">
                     Created: {new Date(item.createdAt).toLocaleString()}

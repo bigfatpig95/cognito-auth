@@ -13,9 +13,6 @@ import Form from "react-bootstrap/Form";
 
 import LoaderButton from "./components/LoaderButton";
 import InputGroup from 'react-bootstrap/InputGroup'
-import Button from 'react-bootstrap/Button'
-import { API, graphqlOperation,Storage } from "aws-amplify";// new
-import { listListitems } from "./graphql/queries";// new
 import Footer from "./containers/Footer";
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'

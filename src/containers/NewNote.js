@@ -1,45 +1,28 @@
-import React, { useRef, useState, useEffect} from "react";
+import React, { useRef, useState} from "react";
 import Form from "react-bootstrap/Form";
 import Col  from "react-bootstrap/Form";
 import { useHistory } from "react-router-dom";
 import LoaderButton from "../components/LoaderButton";
-import { onError } from "../lib/errorLib";
-import config from "../config";
 import "./NewNote.css";
-
-import { API, graphqlOperation,Storage } from "aws-amplify";// new
-import { listListitems } from "../graphql/queries";// new
+import { API,Storage } from "aws-amplify";
 import { createListitem } from "../graphql/mutations";
-
-import { s3Upload } from "../lib/awsLib";
-
-import CurrencyInput from 'react-currency-input-field';
 
 export default function NewNote() {
   const file = useRef(null);
   const history = useHistory();
-  const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
-  const [items, setItems] = useState([]); 
-  const [fetching, setFetching] = useState(false); // new
-
+  const [fetching, setFetching] = useState(false);
   const imageRef = useRef();
-
   const [listForm, setListForm] = useState({
     name: "",
     description: "",  
     category: "",
     image: "",
     price: "",
-    
-    
   });
 
   const handleChange = (key) => {
     return (e) => {
-      console.log(e.target.value)
-      console.log(key)
       setListForm({
         ...listForm,
         [key]: e.target.value
@@ -47,45 +30,18 @@ export default function NewNote() {
     }
   }
   function validateForm() {
-
-    
-   // console.log((decimal[1]))
-    //try{
-   // const decimal = listForm.price.split('.')
-   // console.log(decimal[1].length)
-   // if (listForm.name.length > 0 && ((listForm.price % 1 === 0 )|| (decimal[1].length <= 2))){
-    //    return (true)
-    //}}catch (err) {
-     // console.log(err)
-     // return (false)
-    //}
-    //}
     if (listForm.category !== 'Choose...' && listForm.category !== '')
     return true;
   }
-   
-
-  function handleFileChange(event) {
-    console.log(event)
-
-    file.current = event.target.files[0];
-  }
-
-
 
   async function handleSubmit(event) {
   event.preventDefault();
-
   
   var fileName = Date.now() + ".jpg";
   setIsLoading(true);
   if (imageRef.current.files[0]){
     Storage.put(fileName, imageRef.current.files[0]).then(res => {
       API.graphql({ query: createListitem, variables: { input: {...listForm, image: fileName }}, authMode: "AMAZON_COGNITO_USER_POOLS" })
-     // API.graphql(graphqlOperation(createListitem, { input: {
-     //   ...listForm,
-     //   image: fileName
-     // }}))
       .then((e) => {
         setListForm({
           name: "",
@@ -112,14 +68,11 @@ export default function NewNote() {
      history.push("/");
    })
    .catch((err) => {
-     console.error(err);
+     console.log('error');
      setIsLoading(false);
    });
-
   }
-
 }
-
   return (
     <div className="NewNote">
       <Form onSubmit={handleSubmit}>
@@ -134,9 +87,7 @@ export default function NewNote() {
           <Form.Control.Feedback type="invalid">
               Please choose a username.
         </Form.Control.Feedback>
-        </Form.Group>
-
-        
+        </Form.Group>        
 
         <Form.Group as={Col} controlId="formGridState">
         <Form.Label>category</Form.Label>
@@ -150,10 +101,8 @@ export default function NewNote() {
       </Form.Group>
 
         <Form.Group className="mb-3" controlId="price">
-          <Form.Label>price</Form.Label>
-          
-          <Form.Control  placeholder="Enter Item price" type="number" onChange={handleChange("price")} required 
-          />
+          <Form.Label>price</Form.Label>          
+          <Form.Control  placeholder="Enter Item price" type="number" onChange={handleChange("price")} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="file">
@@ -177,14 +126,3 @@ export default function NewNote() {
     </div>
   );
 }
-
-   /*     
-        <CurrencyInput
-          id="input-example"
-          name="input-name"
-          placeholder="Please enter a number"
-          defaultValue={1000}
-          decimalsLimit={2}
-          onValueChange={(value, name) => console.log(value, name)}
-        />;
-        */
